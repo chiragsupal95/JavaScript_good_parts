@@ -51,7 +51,7 @@ var identity1 = function identity1(x) {
   console.log(addf(10)(20));
 
   
-  //
+  //----
   function applyf(add){
       return function(x){
           return function(y){
@@ -66,12 +66,12 @@ var identity1 = function identity1(x) {
 
   //----------------------------------------------------problems 6-9---------------------------------------------------------
 
-  //1
+  //1)
 
-  function curry(add, x){
+  function curry(fun, x){
       return function(y){
         
-            return add(x,y);
+            return fun(x,y);
         
       }
   }
@@ -80,19 +80,12 @@ var identity1 = function identity1(x) {
   //console.log(ad(4));
 
   console.log(curry(add,3)(7));
+  console.log(curry(mul,3)(7));
 
-  //performing multiplication
-
-  function curry1(mul,x){
-      return function(y){
-          return mul(x,y);
-      }
-  }
-
-  console.log(curry1(mul,7)(7));
+  
 
 
-  //2 without writing function 3 ways to create a function --- /use defined functions
+  //2) without writing function 3 ways to create a function --- /use defined functions
 
   inc = addf(1);
   console.log(inc(5));
@@ -103,7 +96,7 @@ var identity1 = function identity1(x) {
   inc = curry(add,1);
   console.log(inc(5));
 
-  //3 methodize a binary function
+  //3) methodize a binary function
 
 function methodize(add){
     return function(y){
@@ -114,7 +107,7 @@ function methodize(add){
 Number.prototype.add = methodize(add);
 console.log((4).add(6));
 
-//4 demethodize a function to binary
+//4) demethodize a function to binary
 
 function demethod(add){
     return function(x,y){
@@ -127,20 +120,7 @@ console.log(demethod(Number.prototype.add)(4,5));
 
 //----------------------------------- problems 10-12 ------------------------------------------------------------
 
-//1
-/*
-function twice(fun){
-    return function(x){
-        return function(y){
-            return fun(x,y);
-        };
-    };
-}
-
-ad = twice(add);
-console.log(ad(11)(5)); */
-
-
+//1)
 function twice(fun){
     return function(x){
         return fun(x,x);
@@ -153,7 +133,7 @@ console.log(double(11));
 var square = twice(mul);
 console.log(square(11));
 
-// 2
+// 2)
 
 function composeu(fun1,fun2){
     return function(x){
@@ -165,7 +145,7 @@ function composeu(fun1,fun2){
 }
 console.log(composeu(double,square)(3));
 
-//3
+//3)
 
 function composeb(fun1, fun2){
     return function(x,y,z){
@@ -188,7 +168,7 @@ function once(fun){
     add_once = once(add);
     console.log(add_once(7,4));
 
-//2
+//2)
 
 function counterf(x){
     return{
@@ -209,7 +189,7 @@ counter = counterf(10);
 console.log(counter.inc());
 console.log(counter.dec());
 
-//15
+//15)
 
 function revokable(nice){
    /* return{
